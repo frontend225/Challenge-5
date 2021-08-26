@@ -99,16 +99,16 @@ var length= parseInt(
 if (isNaN(length) === true) {
   alert('Must input a number for password');
 return;
-
+}
 // Conditional statement: password must have at least 9 characters. If false, user cannot proceed until compliant.
 if (length < 10) {
 alert('Password must contain at least 9 characters');
 return;
 }
 
-// Conditional statement: password must have no more than 100 characters. If false, user cannot proceed until compliant.
-if (length > 100) {
-  alert('Password must contain less than 100 characters');
+// Conditional statement: password must have no more than 128 characters. If false, user cannot proceed until compliant.
+if (length > 64) {
+  alert('Password must contain less than 65 characters');
 return;
 }
 
@@ -129,7 +129,7 @@ var hasUpperCasedCharacters = confirm(
 
 // Variable to include lowercase letters
 var hasLowerCasedCharacters = confirm(
-  'Click Ok to include lowercase letters'
+  'Click Ok to include lowercase letters.'
 );
 
 // Variable that if user doesn't select Ok for all 4 conditional statements, then won't generate password/proceed
@@ -140,7 +140,6 @@ if (
   hasLowerCasedCharacters === false
 ) {
   alert ('Must choose at least one of the characters')
-
   return;
 }
 
@@ -206,8 +205,9 @@ if (options.hasUpperCasedCharacters) {
 
 // Code that will enable the loop
 for (var i = 0; i <options.length; i++) {
+var possibleCharacter = getRandom(possibleCharacters);
 
-  result.push(possibleCharacter);
+result.push(possibleCharacter);
 }
 
 // Incorporate guaranteed Characters into the password
@@ -232,4 +232,3 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword);
-}
